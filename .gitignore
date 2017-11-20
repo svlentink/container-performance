@@ -1,0 +1,10 @@
+# Blacklist everything
+*
+!*/
+# Now whitelist what we actually want
+!.gitignore
+!*.md
+!*.py
+!*.sh
+!*.yml
+!*.png
