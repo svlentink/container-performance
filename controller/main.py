@@ -47,10 +47,6 @@ def get_response_cli(cmd,inp):
   return result
 
 
-def delayed_cmd(cmd):
-  time.sleep(3)
-  subprocess.call(cmd, shell=True)
-
 def delayed_kill(cmd):
   '''
   We can define a web request as one request,
@@ -65,8 +61,8 @@ def delayed_kill(cmd):
   This makes it NOT suited for any real applications,
   since we act upon this limitation by scheduling our requests.
   '''
-  bg_thread = Thread(target=delayed_cmd, args=(cmd,))
-  bg_thread.start()
+  t = threading.Timer(3, subprocess.call, args=(cmd,), kwargs={'shell':True})
+  t.start()
 
 
 if __name__ == '__main__':
