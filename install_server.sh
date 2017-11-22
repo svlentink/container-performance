@@ -30,7 +30,9 @@ echo fetching the custom controller
 cd ~
 git clone https://github.com/svlentink/container-performance.git
 echo installing python dependencies
-pip3 install -r ~/container-performance/controller/requirements.txt
+pip install -r ~/container-performance/controller/requirements.txt
+
+# script verified until here
 
 install_docker() {
 echo Installing docker
