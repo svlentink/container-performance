@@ -11,6 +11,8 @@
   && echo "Please specify what you want to install (docker,rkt,openvz or lxc)" \
   && exit 1
 
+[[ "$USER" != "root" ]] && echo Please run as root && exit 1
+
 echo installing basics for admin and the custon controller
 apt update
 apt install -y \
@@ -32,13 +34,11 @@ git clone https://github.com/svlentink/container-performance.git
 echo installing python dependencies
 pip install -r ~/container-performance/controller/requirements.txt
 
-# script verified until here
-
 install_docker() {
 echo Installing docker
 # http://get.docker.com
 curl -sSL get.docker.com | sh
-sudo usermod -aG docker $USER
+usermod -aG docker $USER
 }
 
 install_rkt() {
@@ -54,7 +54,7 @@ sudo dpkg -i rkt_1.29.0-1_amd64.deb
 install_lxc() {
 echo Installing LXC
 # https://help.ubuntu.com/lts/serverguide/lxc.html
-apt install -y lxc
+apt install -y lxc lxd
 }
 
 install_openvz() {
@@ -76,8 +76,9 @@ net.ipv4.conf.default.send_redirects = 1
 net.ipv4.conf.all.send_redirects = 0
 EOF
 sysctl -p
-apt install -y vzctl vzquota ploop vzstat
-echo Make sure to boot the machine with the openvz kernel
+apt install -y vzctl vzquota ploop
+echo TODO Make sure to boot the machine with the openvz kernel
+# https://askubuntu.com/questions/216398/set-older-kernel-as-default-grub-entry
 }
 
 install_$1
