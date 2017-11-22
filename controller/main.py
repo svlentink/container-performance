@@ -1,4 +1,4 @@
-#!/usb/bin/env python
+#!/usr/bin/env python
 
 import subprocess
 from flask import Flask
@@ -43,7 +43,7 @@ def get_response_cli(cmd,inp):
   '''
   We perform the given command, the input is given to the CLI application
   '''
-  result = subprocess.check_output(cmd + ' ' + inp, shell=True)
+  result = subprocess.check_output(cmd + ' ' + str(inp), shell=True)
   return result
 
 
@@ -66,4 +66,4 @@ def delayed_kill(cmd):
 
 
 if __name__ == '__main__':
-  app.run(debug=True, port=8080, host='0.0.0.0')
+  app.run(debug=True, port=8081, host='0.0.0.0')
