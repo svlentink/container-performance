@@ -29,12 +29,12 @@ apt-get install git lxd lxc
 
 ```
 
-## Launch lxc alphine image and get shell
+## Launch lxc alpine image and get shell
 
 ```shell
 
-sudo lxc launch images:alpine/3.6 alphine1
-sudo lxc exec alphine1 sh
+sudo lxc launch images:alpine/3.6 alpine1
+sudo lxc exec alpine1 sh
 
 ```
 
