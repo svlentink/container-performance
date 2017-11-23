@@ -1,0 +1,11 @@
+version: '2'
+services:
+  lamp:
+    build: .
+    ports:
+      - "8888:80"
+    links:
+      - memcache
+      - memcache:memhost
+  memcache:
+    image: memcached:alpine
