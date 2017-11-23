@@ -7,11 +7,15 @@
 [[ -f /etc/debian_version ]] \
   || ( echo FAIL This script is made for a debian based OS && exit 1 )
 
+# Make sure only root can run script
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
 [[ -z "$1" ]] \
   && echo "Please specify what you want to install (docker,rkt,openvz or lxc)" \
   && exit 1
-
-[[ "$USER" != "root" ]] && echo Please run as root && exit 1
 
 echo installing basics for admin and the custon controller
 apt update
@@ -28,9 +32,14 @@ apt install -y \
   git
 easy_install pip
 
-echo fetching the custom controller
 cd ~
-git clone https://github.com/svlentink/container-performance.git
+if [ ! -d container-performance ]; then
+  echo fetching the custom controller
+  git clone https://github.com/svlentink/container-performance.git
+else
+  echo "custom controller (git repo) already fetched. continue..."
+fi
+
 echo installing python dependencies
 pip install -r ~/container-performance/controller/requirements.txt
 
@@ -38,7 +47,7 @@ install_docker() {
 echo Installing docker
 # http://get.docker.com
 curl -sSL get.docker.com | sh
-usermod -aG docker $USER
+sudo usermod -aG docker $USER
 }
 
 install_rkt() {
@@ -54,7 +63,7 @@ sudo dpkg -i rkt_1.29.0-1_amd64.deb
 install_lxc() {
 echo Installing LXC
 # https://help.ubuntu.com/lts/serverguide/lxc.html
-apt install -y lxc lxd
+apt install -y lxc
 }
 
 install_openvz() {
@@ -77,8 +86,9 @@ net.ipv4.conf.all.send_redirects = 0
 EOF
 sysctl -p
 apt install -y vzctl vzquota ploop
-echo TODO Make sure to boot the machine with the openvz kernel
-# https://askubuntu.com/questions/216398/set-older-kernel-as-default-grub-entry
+wget -O /tmp/vzstats_0.3.2-1_all.deb http://repo.coolcold.org/pool/main/v/vzstats/vzstats_0.3.2-1_all.deb
+sudo dpkg -i /tmp/vzstats_0.3.2-1_all.deb 
+echo Make sure to boot the machine with the openvz kernel
 }
 
 install_$1
