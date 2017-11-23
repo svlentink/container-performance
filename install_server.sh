@@ -47,7 +47,7 @@ install_docker() {
 echo Installing docker
 # http://get.docker.com
 curl -sSL get.docker.com | sh
-sudo usermod -aG docker $USER
+usermod -aG docker $USER
 }
 
 install_rkt() {
@@ -63,7 +63,7 @@ sudo dpkg -i rkt_1.29.0-1_amd64.deb
 install_lxc() {
 echo Installing LXC
 # https://help.ubuntu.com/lts/serverguide/lxc.html
-apt install -y lxc
+apt install -y lxc lxd
 }
 
 install_openvz() {
