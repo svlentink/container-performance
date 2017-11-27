@@ -10,21 +10,23 @@ app = Flask(__name__)
 
 from scenarios import *
 
-
-@app.route('/GET/<cont>/<scenario>/<int:inp>', methods=['GET'])
-def get_docker_cli(cont, scenario, inp):
+# e.g. /GET/cli/python/docker/1337
+@app.route('/GET/<reqtype>/<platform>/<cont>/<int:inp>', methods=['GET'])
+def process_get_requesti(reqtype, platform, cont, inp):
   print(request) # debug
   if cont not in container_technologies:
     print('Unknown container technology, please use one of', container_technologies)
     return('Unknown container technology',500)
-  if scenario not in scenarios:
-    print('Unknown scenario, pleas use one of', scenarios)
-    return('Unknown scenario',500)
+  if reqtype not in scenarios:
+    print('Unknown request type, pleas use one of', scenarios)
+    return('Unknown reqtype',500)
+  if platform not in scenarios[reqtype]:
+    print('Unknown platfrom type, please use one of', scenarios[platform])
+    return('Unknown platform',500)
   
-  cmds = scenarios[scenario][cont]
-  if 'port' in scenarios[scenario]:
-    # type is server
-    port = scenarios[scenarios]['port']
+  cmds = scenarios[reqtype][platform][cont]
+  if reqtype == 'server':
+    port = scenarios[reqtype][platform]['port']
     result = get_response_server(cmds,inp)
   else:
     # type is cli

@@ -10,20 +10,34 @@ container_technologies = ['docker','rkt','lxc','openvz']
 # a init commond, to get the server running
 # and a kill command, to terminate the server.
 scenarios = {
-  'test-cli':{
-    'docker' : 'docker run -it --rm alpine echo hoi'
-  },
-  'lamp-server':{
-    'docker':{
-      'init' : 'docker run -p 8888:80 bla',
-      'kill' : 'docker stop bla'
+  'cli' : {
+    'bash' : {
+      'docker' : 'docker run cli-bash',
+      'rkt' : ''
     },
-    'rkt':{
-      'init': ''
+    'node' : {
+      'docker' : 'docker run cli-node'
     },
-    'port' : 8888 # this means that is is a running server
+    'python' : {
+      'docker' : 'docker run cli-python'
+    },
+    'test' : {
+      'docker' : 'docker run alpine echo lorem'
+    }
   },
-  'bash-cli':{},
-  'python-cli':{},
-  'nodejs-cli':{}
+  'server' : {
+    'lamp': {
+      'port' : 8888, # this means that is is a running server
+      'docker':{
+        'init' : 'docker run -p 8888:80 bla',
+        'kill' : 'docker stop bla'
+      },
+      'rkt':{
+        'init': ''
+      },
+      'lxc':{
+        'init' : ''
+      }
+    }
+  }
 }
