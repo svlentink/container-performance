@@ -35,10 +35,10 @@ var_dump($arr);
 ?>
 EOF
 
-cat << EOF  > /entrypoint.sh
+cat << EOF  > /entrypoint
 #!/bin/sh
 php-fpm7
 nginx -g "daemon off;"
 EOF
-chmod +x /entrypoint.sh
+chmod +x /entrypoint
 
