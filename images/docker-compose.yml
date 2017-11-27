@@ -1,7 +1,7 @@
 version: '2'
 services:
   lamp:
-    build: .
+    image: server-lamp
     ports:
       - "8888:80"
     links:
