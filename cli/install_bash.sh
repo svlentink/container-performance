@@ -4,7 +4,7 @@ apk add --no-cache bash
 
 cat << 'EOF' > /entrypoint
 #!/usr/bin/env bash
-echo '{"input":"$@"}'
+echo '{"input":"'$@'"}'
 EOF
 
 chmod +x /entrypoint
