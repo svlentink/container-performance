@@ -9,4 +9,5 @@
 !*.yml
 !*.png
 !*.txt
-!Dockerfile
+!*.Dockerfile
+!*.appc

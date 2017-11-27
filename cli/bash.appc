@@ -1,0 +1,21 @@
+# https://coreos.com/rkt/docs/latest/getting-started-guide.html#create-the-image
+acbuild begin
+acbuild set-name cli-bash
+acbuild copy install_bash.sh /
+acbuild set-exec /entrypoint
+#acbuild label add arch amd64
+#acbuild label add os linux
+acbuild write cli-bash.aci
+acbuild end
+
+exit 0
+{
+    "acKind": "ImageManifest",
+    "acVersion": "0.8.11",
+    "name": "cli-bash",
+    "app": {
+        "exec": [
+            "/entrypoint"
+        ]
+    }
+}
