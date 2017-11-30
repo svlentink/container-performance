@@ -13,7 +13,8 @@ scenarios = {
   'cli' : {
     'bash' : {
       'docker' : 'docker run cli-bash',
-      'rkt' : ''
+      'rkt' : '',
+      'lxc' : 'custom-lxc-start cli-bash'
     },
     'node' : {
       'docker' : 'docker run cli-node'
