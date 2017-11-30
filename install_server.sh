@@ -116,7 +116,7 @@ if [[ $CONTAINERTYPE == "docker" \
   || $CONTAINERTYPE == "lxc" ]]; then
   install_$CONTAINERTYPE
   echo Installation completed successful
-  ./images/create_images.sh $CONTAINERTYPE
+  ~/container-performance/images/create_images.sh $CONTAINERTYPE
   echo "rebooting in 3"
   sleep 1
   echo 2
