@@ -39,3 +39,20 @@ sudo lxc exec alpine1 sh
 ```
 
 Source: https://wiki.alpinelinux.org/wiki/Install_Alpine_on_LXD
+
+
+## lxc-execute
+
+At first this seemed like the best solution,
+however:
+```shell
+lxc-execute --name containername -- echo '#test' > /etc/cron.d/lxc-test
+```
+
+If we use an existing container (in which we install lxc, as mentioned [here](https://bugs.launchpad.net/ubuntu/+source/lxc/+bug/1171464))
+or a non existing (random name),
+both cases result in an effected host file system, which is certainly not what we want!
+This is also mentioned [here](https://docs.oracle.com/cd/E37670_01/E37355/html/ol_app_containers.html)
+at the bottom of the page as a note.
+
+We now follow [this](https://unix.stackexchange.com/questions/102204/executing-a-command-inside-a-running-lxc)
