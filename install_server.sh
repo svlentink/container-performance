@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash -e
 
 # This script is used to install one of the environments
 # make sure you only install one environment,
