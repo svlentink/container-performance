@@ -80,6 +80,7 @@ install_lxc() {
 echo Installing LXC
 # https://help.ubuntu.com/lts/serverguide/lxc.html
 apt install -y lxc lxd
+ln -s ~/container-performance/custom-lxc-start.sh /usr/local/bin/custom-lxc-start
 }
 
 install_openvz() {

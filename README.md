@@ -19,6 +19,6 @@ to facilite multiple HTTP requests, which serve a single web page request.
 
 Use `docker`,`rkt` or `lxc` as CONTAINERTYPE.
 ```shell
-export CONTAINERTYPE=
+export CONTAINERTYPE=insert_here
 curl -sSL https://raw.githubusercontent.com/svlentink/container-performance/master/install_server.sh | bash
 ```
