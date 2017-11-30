@@ -13,9 +13,15 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-CONTAINERTYPE=$1
+# if no is provided, get system
 [[ -z "$CONTAINERTYPE" ]] \
-  && read -p "Please specify what you want to install (docker,rkt or lxc)"  CONTAINERTYPE
+  && CONTAINERTYPE=$1
+[[ -z "$CONTAINERTYPE" ]] \
+  && read -p "Please specify what you want to install (docker,rkt or lxc)"  CONTAINERTYPE \
+  && export "CONTAINERTYPE=$CONTAINERTYPE"
+[[ -z "$CONTAINERTYPE" ]] \
+  && echo No valid input \
+  && exit 1
 [[ $CONTAINERTYPE == "docker" ]] \
   || [[ $CONTAINERTYPE == "rkt" ]] \
   || [[ $CONTAINERTYPE == "lxc" ]] \
