@@ -111,12 +111,9 @@ echo Make sure to boot the machine with the openvz kernel
 
 install_controller
 
-if [[ $CONTAINERTYPE == "docker" ]] \
-  || [[ $CONTAINERTYPE == "rkt" ]] \
-  || [[ $CONTAINERTYPE == "lxc" ]]; then
-  echo Unknow containertype
-  exit 1
-else
+if [[ $CONTAINERTYPE == "docker" \
+  || $CONTAINERTYPE == "rkt" \
+  || $CONTAINERTYPE == "lxc" ]]; then
   install_$CONTAINERTYPE
   echo Installation completed successful
   ./images/create_images.sh $CONTAINERTYPE
@@ -127,4 +124,7 @@ else
   echo 1
   sleep 1
   reboot
+else
+  echo Unknow containertype
+  exit 1
 fi
