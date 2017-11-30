@@ -22,10 +22,6 @@ fi
 [[ -z "$CONTAINERTYPE" ]] \
   && echo No valid input \
   && exit 1
-[[ $CONTAINERTYPE == "docker" ]] \
-  || [[ $CONTAINERTYPE == "rkt" ]] \
-  || [[ $CONTAINERTYPE == "lxc" ]] \
-  || (echo Unknow containertype && exit 1)
 
 install_controller() {
 echo installing basics for admin and the custon controller
@@ -114,13 +110,21 @@ echo Make sure to boot the machine with the openvz kernel
 }
 
 install_controller
-install_$CONTAINERTYPE
-echo Installation completed successful
-./images/create_images.sh $CONTAINERTYPE
-echo "rebooting in 3"
-sleep 1
-echo 2
-sleep 1
-echo 1
-sleep 1
-reboot
+
+if [[ $CONTAINERTYPE == "docker" ]] \
+  || [[ $CONTAINERTYPE == "rkt" ]] \
+  || [[ $CONTAINERTYPE == "lxc" ]]; then
+  echo Unknow containertype
+  exit 1
+else
+  install_$CONTAINERTYPE
+  echo Installation completed successful
+  ./images/create_images.sh $CONTAINERTYPE
+  echo "rebooting in 3"
+  sleep 1
+  echo 2
+  sleep 1
+  echo 1
+  sleep 1
+  reboot
+fi
