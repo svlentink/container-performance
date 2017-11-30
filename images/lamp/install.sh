@@ -1,7 +1,10 @@
 #!/bin/sh
 
 apk add --no-cache \
-  nginx php7 php7-fpm
+  nginx
+apk add --no-cache \
+  --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
+  php7-memcached php7 php7-fpm
 
 cat << EOF > /etc/nginx/conf.d/default.conf
 server {
@@ -16,11 +19,6 @@ server {
 EOF
 
 mkdir -p /run/nginx
-
-apk add --no-cache \
-  --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
-  php7-memcached
-
 mkdir -p /var/www
 
 cat << 'EOF' > /var/www/index.php
