@@ -56,3 +56,5 @@ This is also mentioned [here](https://docs.oracle.com/cd/E37670_01/E37355/html/o
 at the bottom of the page as a note.
 
 We now follow [this](https://unix.stackexchange.com/questions/102204/executing-a-command-inside-a-running-lxc)
+
+Note that we now use it as a system container instead of a protected env. to execute. (should be mentioned in our final paper)

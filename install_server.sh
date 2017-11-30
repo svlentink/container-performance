@@ -58,6 +58,14 @@ wget https://github.com/rkt/rkt/releases/download/v1.29.0/rkt_1.29.0-1_amd64.deb
 wget https://github.com/rkt/rkt/releases/download/v1.29.0/rkt_1.29.0-1_amd64.deb.asc
 gpg --verify rkt_1.29.0-1_amd64.deb.asc
 sudo dpkg -i rkt_1.29.0-1_amd64.deb
+
+GITHUB_REPO='containers/build'
+LATEST_RELEASE_TAG=$(curl -Is https://github.com/${GITHUB_REPO}/releases/latest \
+  | grep Location | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+wget -O /tmp/toinstall.tgz \
+  https://github.com/${GITHUB_REPO}/releases/download/v$LATEST_RELEASE_TAG/acbuild-v$LATEST_RELEASE_TAG.tar.gz
+tar xvfz /tmp/toinstall.tgz --directory /root/
+ln -s  /root/acbuild-v*/* /usr/local/bin/ # make all the acbuild tools available to PATH
 }
 
 install_lxc() {
