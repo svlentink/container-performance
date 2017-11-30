@@ -24,7 +24,7 @@ create_lxc_img() {
   lxc-create -t alpine -n $reqtype"-"$framework
   cp $DIR/$framework/install.sh /var/lib/lxc/$reqtype"-"$framework/rootfs/
   lxc-start --name $reqtype"-"$framework
-  sleep 3 # if this was not provide, apk could not fetch the sources list
+  sleep 6 # if this was not provide, apk could not fetch the sources list
   lxc-attach --name $reqtype"-"$framework -- /install.sh
   lxc-stop --name $reqtype"-"$framework
 #  echo "lxc.init_cmd = /entrypoint" >> /var/lib/lxc/$reqtype"-"$framework/config
