@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-DIR="~/container-performance/images"
+DIR=~/container-performance/images
 
 echo Entering $0
 
