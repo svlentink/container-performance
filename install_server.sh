@@ -15,9 +15,11 @@ fi
 
 CONTAINERTYPE=$1
 [[ -z "$CONTAINERTYPE" ]] \
-  && echo "Please specify what you want to install (docker,rkt or lxc)" \
-  && read CONTAINERTYPE
-
+  && read -p "Please specify what you want to install (docker,rkt or lxc)"  CONTAINERTYPE
+[[ $CONTAINERTYPE == "docker" ]] \
+  || [[ $CONTAINERTYPE == "rkt" ]] \
+  || [[ $CONTAINERTYPE == "lxc" ]] \
+  || (echo Unknow containertype && exit 1)
 
 install_controller() {
 echo installing basics for admin and the custon controller
