@@ -1,6 +1,8 @@
 #!/bin/bash -e
 
-DIR=`pwd`
+DIR="~/container-performance/images"
+
+echo Entering $0
 
 create_images() {
   local conttype=$1

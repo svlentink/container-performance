@@ -13,10 +13,13 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-[[ -z "$1" ]] \
-  && echo "Please specify what you want to install (docker,rkt,openvz or lxc)" \
-  && exit 1
+CONTAINERTYPE=$1
+[[ -z "$CONTAINERTYPE" ]] \
+  && echo "Please specify what you want to install (docker,rkt or lxc)" \
+  && read CONTAINERTYPE
 
+
+install_controller() {
 echo installing basics for admin and the custon controller
 apt update
 apt install -y \
@@ -42,6 +45,7 @@ fi
 
 echo installing python dependencies
 pip install -r ~/container-performance/controller/requirements.txt
+}
 
 install_docker() {
 echo Installing docker
@@ -75,6 +79,8 @@ apt install -y lxc lxd
 }
 
 install_openvz() {
+echo OpenVZ is not used in this research
+exit 1
 echo Installing OpenVZ
 # https://linoxide.com/ubuntu-how-to/install-configure-openvz-ubuntu-14-04-15-04/
 echo " deb http://download.openvz.org/debian wheezy main" > /etc/apt/sources.list.d/openvz-rhel6.list
@@ -99,8 +105,11 @@ sudo dpkg -i /tmp/vzstats_0.3.2-1_all.deb
 echo Make sure to boot the machine with the openvz kernel
 }
 
-install_$1
-echo "Installation completed sucessful, rebooting in 3"
+install_controller
+install_$CONTAINERTYPE
+echo Installation completed successful
+./images/create_images.sh $CONTAINERTYPE
+echo "rebooting in 3"
 sleep 1
 echo 2
 sleep 1

@@ -14,3 +14,9 @@ We could describe a request as the loading of a website,
 which could include multiple sources (e.g. html, css, js).
 This would mean we keep our container 'alive' for a pre-defined time,
 to facilite multiple HTTP requests, which serve a single web page request.
+
+## Installation
+
+```shell
+curl -sSL https://raw.githubusercontent.com/svlentink/container-performance/master/install_server.sh | sh
+```
