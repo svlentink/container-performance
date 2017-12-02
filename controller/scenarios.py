@@ -22,7 +22,7 @@ scenarios = {
       'lxc' : 'lxc-execute -n cli-node -- /entrypoint'
     },
     'python' : {
-      'docker' : 'docker run cli-python'
+      'docker' : 'docker run cli-python',
       'rkt' : '',
       'lxc' : 'lxc-execute -n cli-python -- /entrypoint'
     },
