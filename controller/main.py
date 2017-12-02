@@ -37,7 +37,7 @@ def process_get_requesti(reqtype, platform, cont, inp):
 def get_response_server(cmds, inp, port):
   subprocess.call(cmds['init'], shell=True)
   delayed_kill(cmds['kill'])
-  url = 'localhost:' + str(port) + '/' + str(inp)
+  url = 'localhost:' + str(port) + '?param=' + str(inp)
   return requests.get(url).json
 
 
