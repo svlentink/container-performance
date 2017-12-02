@@ -5,7 +5,7 @@ from flask import Flask
 from flask import request
 import requests
 import time
-from threading import Thread
+import threading
 app = Flask(__name__)
 
 from scenarios import *
