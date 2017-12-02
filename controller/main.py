@@ -45,7 +45,8 @@ def get_response_cli(cmd,inp):
   '''
   We perform the given command, the input is given to the CLI application
   '''
-  result = subprocess.check_output(cmd + ' ' + str(inp), shell=True)
+  result = subprocess.check_output(cmd + ' ' + str(inp) + ' 2> /dev/null', shell=True)
+  # we do 2>/dev/null since lxc-execute gives some mount errs (which we do not use anyway)
   return result
 
 
@@ -68,4 +69,4 @@ def delayed_kill(cmd):
 
 
 if __name__ == '__main__':
-  app.run(debug=True, port=8081, host='0.0.0.0')
+  app.run(debug=True, port=8081, host='127.0.0.1')

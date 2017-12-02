@@ -25,6 +25,8 @@ create_lxc_img() {
   cp $DIR/$framework/install.sh /var/lib/lxc/$reqtype"-"$framework/rootfs/
   lxc-start --name $reqtype"-"$framework
   sleep 6 # if this was not provide, apk could not fetch the sources list
+  # to enable lxc-execute, we need lxc installed in the contianer
+  [[ $reqtype == "cli" ]] && lxc-attach -n $reqtype"-"$framework -- apk add --no-cache lxc
   lxc-attach --name $reqtype"-"$framework -- /install.sh
   lxc-stop --name $reqtype"-"$framework
 #  echo "lxc.init_cmd = /entrypoint" >> /var/lib/lxc/$reqtype"-"$framework/config

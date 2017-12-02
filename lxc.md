@@ -58,3 +58,12 @@ at the bottom of the page as a note.
 We now follow [this](https://unix.stackexchange.com/questions/102204/executing-a-command-inside-a-running-lxc)
 
 Note that we now use it as a system container instead of a protected env. to execute. (should be mentioned in our final paper)
+
+### but wait
+
+It seemed that the in the command above, everything after `>` was on the host machine.
+We confirmed that it does work, if we first run `apk add --no-cache lxc` inside the container.
+
+```shell
+lxc-execute -n cli-bash -- ls -al /tmp 2> /dev/null
+```

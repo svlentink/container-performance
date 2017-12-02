@@ -14,13 +14,17 @@ scenarios = {
     'bash' : {
       'docker' : 'docker run cli-bash',
       'rkt' : '',
-      'lxc' : 'custom-lxc-start cli-bash'
+      'lxc' : 'lxc-execute -n cli-bash -- /entrypoint'
     },
     'node' : {
-      'docker' : 'docker run cli-node'
+      'docker' : 'docker run cli-node',
+      'rkt' : '',
+      'lxc' : 'lxc-execute -n cli-node -- /entrypoint'
     },
     'python' : {
       'docker' : 'docker run cli-python'
+      'rkt' : '',
+      'lxc' : 'lxc-execute -n cli-python -- /entrypoint'
     },
     'test' : {
       'docker' : 'docker run alpine echo lorem'
