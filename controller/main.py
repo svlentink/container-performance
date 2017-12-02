@@ -27,7 +27,7 @@ def process_get_requesti(reqtype, platform, cont, inp):
   cmds = scenarios[reqtype][platform][cont]
   if reqtype == 'server':
     port = scenarios[reqtype][platform]['port']
-    result = get_response_server(cmds,inp)
+    result = get_response_server(cmds,inp,port)
   else:
     # type is cli
     result = get_response_cli(cmds,inp)
