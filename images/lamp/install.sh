@@ -40,4 +40,6 @@ nginx -g "daemon off;"
 EOF
 chmod +x /entrypoint
 
-rc-update add nginx
+# the following is provided in the lxc alpine image
+[[ -n "$(which rc-update)" ]] \
+  && rc-update add nginx
