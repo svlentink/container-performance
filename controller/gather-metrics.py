@@ -23,7 +23,7 @@ def measure_millis(url):
 
 def gather_metrics(conttype):
   results = {}
-  filename = data_output_path + '/' + conttype + '.json'
+  filename = data_output_path + '/' + conttype + str(int(time.time())) + '.json'
   for reqtype in scenarios:
     results[reqtype] = {}
     for platform in scenarios[reqtype]:
