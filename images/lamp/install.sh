@@ -40,3 +40,4 @@ nginx -g "daemon off;"
 EOF
 chmod +x /entrypoint
 
+rc-update add nginx

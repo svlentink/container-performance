@@ -35,7 +35,7 @@ def gather_metrics(conttype):
       for i in range(amount_of_tests_per_case):
         time.sleep(sleep_interval_between_tests)
         metric = measure_millis(url + str(i))
-        arr.push(metric)
+        arr.append(metric)
       
       print('Saving preliminary result to disk', reqtype, platform)
       results[reqtype][platform] = arr
