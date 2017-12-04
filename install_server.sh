@@ -33,6 +33,7 @@ apt install -y \
   curl \
   tmux \
   man \
+  memcached \
   python3 \
   python-setuptools \
   python-dev \
