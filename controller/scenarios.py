@@ -25,9 +25,6 @@ scenarios = {
       'docker' : 'docker run cli-python',
       'rkt' : '',
       'lxc' : 'lxc-execute -n cli-python -- /entrypoint'
-    },
-    'test' : {
-      'docker' : 'docker run alpine echo lorem'
     }
   },
   'server' : {
