@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -ex
 
 apk add --no-cache \
   nginx
@@ -41,5 +41,6 @@ EOF
 chmod +x /entrypoint
 
 # the following is provided in the lxc alpine image
-[[ -n "$(which rc-update)" ]] \
-  && rc-update add nginx
+if [ -n "$(which rc-update)" ]; then
+  rc-update add nginx
+fi
