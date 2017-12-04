@@ -17,10 +17,11 @@ def measure_millis(url):
   r = requests.get(url)
   stopt = int(time.time() * 1000)
   delta = stopt - startt
-  return { 'delta' : delta, 'status' : r.status_code }
+  return { 'd' : delta, 's' : r.status_code }
 
 def gather_metrics(conttype):
   results = {}
+  filename = data_output_path + '/' + conttype + '.json'
   for reqtype in scenarios:
     results[reqtype] = {}
     for platform in scenarios[reqtype]:
@@ -39,8 +40,10 @@ def gather_metrics(conttype):
       
       print('Saving preliminary result to disk', reqtype, platform)
       results[reqtype][platform] = arr
-      file = data_output_path + '/' + conttype + '.json'
-      json.dump(results,file)
+      with open(filename, 'w') as f:
+        json.dump(results,f,default=str)
+
+
 
 
 
