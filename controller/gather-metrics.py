@@ -8,7 +8,7 @@ import json
 import time
 
 print('This script is the heart of the research, it gathers the numbers.')
-amount_of_tests_per_case = 1000
+amount_of_tests_per_case = 10
 sleep_interval_between_tests = 3 #sec
 data_output_path = '/root'
 
@@ -34,6 +34,7 @@ def gather_metrics(conttype):
         # To allow system optimizations (e.g. caching)
         # and initial container startup latency
         # we first start the container 10 times
+        time.sleep(sleep_interval_between_tests)
         measure_millis(url)
       
       arr = []
