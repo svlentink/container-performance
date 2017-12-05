@@ -35,9 +35,11 @@ def process_get_requesti(reqtype, platform, cont, inp):
 
 
 def get_response_server(cmds, inp, port):
-  subprocess.call(cmds['init'], shell=True)
-  delayed_kill(cmds['kill'])
-  url = 'localhost:' + str(port) + '?param=' + str(inp)
+  killcmd = cmds['kill']
+  delayed_kill(killcmd)
+  if killcmd not in kill_container_at:
+    subprocess.call(cmds['init'], shell=True)
+  url = 'http://localhost:' + str(port) + '?param=' + str(inp)
   for i in range(100):
     try:
       r = requests.get(url).json
@@ -79,6 +81,7 @@ def kill_idle_containers(kill_container_at):
     for killcmd in kill_container_at:
       if kill_container_at[killcmd] > int(time.time()):
         subprocess.call(killcmd, shell=True)
+        del kill_container_at[killcmd]
 
 if __name__ == '__main__':
   t = threading.Thread(target=kill_idle_containers,args=(kill_container_at,))
