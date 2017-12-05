@@ -19,6 +19,15 @@ to facilite multiple HTTP requests, which serve a single web page request.
 
 Use `docker`,`rkt` or `lxc` as CONTAINERTYPE.
 ```shell
+sudo su
 export CONTAINERTYPE=insert_here
 curl -sSL https://raw.githubusercontent.com/svlentink/container-performance/master/install_server.sh | bash
+```
+
+And after the reboot you can run:
+```shell
+sudo su
+export CONTAINERTYPE=insert_here
+/root/container-performance/controller/main.py & \
+  sleep 3 && /root/container-performance/controller/gather-metrics.py
 ```

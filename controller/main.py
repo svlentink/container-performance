@@ -38,8 +38,14 @@ def get_response_server(cmds, inp, port):
   subprocess.call(cmds['init'], shell=True)
   delayed_kill(cmds['kill'])
   url = 'localhost:' + str(port) + '?param=' + str(inp)
-  return requests.get(url).json
-
+  for i in range(100):
+    try:
+      r = requests.get(url).json
+      return r
+    except Exception as e:
+      nothing = e
+    time.sleep(0.05)
+  return -1
 
 def get_response_cli(cmd,inp):
   '''
@@ -64,9 +70,17 @@ def delayed_kill(cmd):
   This makes it NOT suited for any real applications,
   since we act upon this limitation by scheduling our requests.
   '''
-  t = threading.Timer(3, subprocess.call, args=(cmd,), kwargs={'shell':True})
-  t.start()
+  kill_container_at[cmd] = int(time.time()) + 5 # the next kill is scheduled in x sec
 
+kill_container_at = {}
+def kill_idle_containers(kill_container_at):
+  while True:
+    time.sleep(0.5)
+    for killcmd in kill_container_at:
+      if kill_container_at[killcmd] > int(time.time()):
+        subprocess.call(killcmd, shell=True)
 
 if __name__ == '__main__':
+  t = threading.Thread(target=kill_idle_containers,args=(kill_container_at,))
+  t.start()
   app.run(debug=True, port=8081, host='127.0.0.1')
