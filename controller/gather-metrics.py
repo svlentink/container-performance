@@ -9,7 +9,7 @@ import time
 
 print('This script is the heart of the research, it gathers the numbers.')
 amount_of_tests_per_case = 10
-sleep_interval_between_tests = 3 #sec
+sleep_interval_between_tests = 10 #sec
 data_output_path = '/root'
 
 
