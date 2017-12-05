@@ -47,7 +47,7 @@ def get_response_server(cmds, inp, port):
     except Exception as e:
       nothing = e
     time.sleep(0.05)
-  return -1
+  return { 'error' : True }
 
 def get_response_cli(cmd,inp):
   '''
@@ -79,7 +79,7 @@ def kill_idle_containers(kill_container_at):
   while True:
     time.sleep(0.5)
     for killcmd in kill_container_at:
-      if kill_container_at[killcmd] > int(time.time()):
+      if kill_container_at[killcmd] < int(time.time()):
         subprocess.call(killcmd, shell=True)
         del kill_container_at[killcmd]
 
