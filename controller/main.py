@@ -47,7 +47,7 @@ def get_response_server(cmds, inp, port):
     except Exception as e:
       nothing = e
     time.sleep(0.05)
-  return { 'error' : True }
+  raise TimeoutError('Could not reach container on ' + url)
 
 def get_response_cli(cmd,inp):
   '''
