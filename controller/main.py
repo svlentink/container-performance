@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import subprocess
 from flask import Flask
@@ -7,12 +7,13 @@ import requests
 import time
 import threading
 app = Flask(__name__)
-
 from scenarios import *
+
+kill_container_after = 8 #sec
 
 # e.g. /GET/cli/python/docker/1337
 @app.route('/GET/<reqtype>/<platform>/<cont>/<int:inp>', methods=['GET'])
-def process_get_requesti(reqtype, platform, cont, inp):
+def process_get_request(reqtype, platform, cont, inp):
   print(request) # debug
   if cont not in container_technologies:
     print('Unknown container technology, please use one of', container_technologies)
@@ -36,10 +37,10 @@ def process_get_requesti(reqtype, platform, cont, inp):
 
 def get_response_server(cmds, inp, port):
   killcmd = cmds['kill']
-  delayed_kill(killcmd)
   if killcmd not in kill_container_at:
     subprocess.call(cmds['init'], shell=True)
     print('Just performed:',cmds['init'])
+  delayed_kill(killcmd)
   url = 'http://localhost:' + str(port) + '?param=' + str(inp)
   for i in range(100):
     try:
@@ -73,7 +74,7 @@ def delayed_kill(cmd):
   This makes it NOT suited for any real applications,
   since we act upon this limitation by scheduling our requests.
   '''
-  kill_container_at[cmd] = int(time.time()) + 8 # the next kill is scheduled in x sec
+  kill_container_at[cmd] = int(time.time()) + kill_container_after
 
 kill_container_at = {}
 def kill_idle_containers(kill_container_at):
