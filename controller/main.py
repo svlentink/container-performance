@@ -49,7 +49,7 @@ def get_response_server(cmds, inp, port):
     except Exception as e:
       nothing = e
     time.sleep(0.05)
-  raise TimeoutError('Could not reach container on ' + url)
+  raise Exception('Could not reach container on ' + url) #TimeoutError only in python3
 
 def get_response_cli(cmd,inp):
   '''
