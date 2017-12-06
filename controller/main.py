@@ -44,8 +44,8 @@ def get_response_server(cmds, inp, port):
   url = 'http://localhost:' + str(port) + '?param=' + str(inp)
   for i in range(100):
     try:
-      r = requests.get(url).json
-      return r
+      r = requests.get(url)
+      return r.json()
     except Exception as e:
       nothing = e
     time.sleep(0.05)
