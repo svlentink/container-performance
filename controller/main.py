@@ -41,7 +41,7 @@ def get_response_server(cmds, inp, port):
     subprocess.call(cmds['init'], shell=True)
     print('Just performed:',cmds['init'])
   delayed_kill(killcmd)
-  url = 'http://localhost:' + str(port) + '?param=' + str(inp)
+  url = 'http://server-container:' + str(port) + '?param=' + str(inp)
   for i in range(100):
     try:
       r = requests.get(url)
@@ -92,4 +92,4 @@ def kill_idle_containers(kill_container_at):
 if __name__ == '__main__':
   t = threading.Thread(target=kill_idle_containers,args=(kill_container_at,))
   t.start()
-  app.run(debug=True, port=8081, host='127.0.0.1')
+  app.run(debug=True, port=8081, host='main-controller')

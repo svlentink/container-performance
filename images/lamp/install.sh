@@ -24,7 +24,7 @@ mkdir -p /var/www
 cat << 'EOF' > /var/www/index.php
 <?php 
 $mc = new Memcached();
-$mc->addServer("memhost", 11211);
+$mc->addServer("127.0.0.1", 11211);
 $previous = $mc->get("last");
 $current = $_GET["param"];
 $mc->set("last", $current); 

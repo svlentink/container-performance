@@ -50,6 +50,7 @@ fi
 
 echo installing python dependencies
 pip install -r ~/container-performance/controller/requirements.txt
+echo '127.0.0.1 main-controller' >> /etc/hosts
 }
 
 install_docker() {
@@ -57,6 +58,7 @@ echo Installing docker
 # http://get.docker.com
 curl -sSL get.docker.com | sh
 usermod -aG docker $USER
+echo '127.0.0.1 server-container' >> /etc/hosts
 }
 
 install_rkt() {

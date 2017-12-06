@@ -28,7 +28,7 @@ def gather_metrics(conttype):
     results[reqtype] = {}
     for platform in scenarios[reqtype]:
       nr = randrange(100)
-      url = 'http://127.0.0.1:8081/GET/' + reqtype + '/' + platform + '/' + conttype + '/' + str(nr)
+      url = 'http://main-controller:8081/GET/' + reqtype + '/' + platform + '/' + conttype + '/' + str(nr)
       
       for i in range(10):
         # To allow system optimizations (e.g. caching)
