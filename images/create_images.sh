@@ -16,6 +16,8 @@ create_docker_img() {
   local reqtype=$1
   local framework=$2
   docker build -t $reqtype-$framework $DIR/$framework/
+  docker run -dp 8888:80 --name $reqtype-$framework $reqtype-$framework
+  docker stop $reqtype-$framework
 }
 
 create_lxc_img() {

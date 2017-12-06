@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import subprocess
 from flask import Flask
@@ -72,16 +72,20 @@ def delayed_kill(cmd):
   This makes it NOT suited for any real applications,
   since we act upon this limitation by scheduling our requests.
   '''
-  kill_container_at[cmd] = int(time.time()) + 5 # the next kill is scheduled in x sec
+  kill_container_at[cmd] = int(time.time()) + 8 # the next kill is scheduled in x sec
 
 kill_container_at = {}
 def kill_idle_containers(kill_container_at):
   while True:
     time.sleep(0.5)
+    todoremove[]
     for killcmd in kill_container_at:
       if kill_container_at[killcmd] < int(time.time()):
         subprocess.call(killcmd, shell=True)
-        del kill_container_at[killcmd]
+        print('Just performed:',killcmd)
+        todoremove.append(killcmd) # it cannot be removed here, since it will remove an item of an array it is looping through
+    for cmd in todoremove:
+      del kill_container_at[cmd]
 
 if __name__ == '__main__':
   t = threading.Thread(target=kill_idle_containers,args=(kill_container_at,))
