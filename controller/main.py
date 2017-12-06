@@ -28,11 +28,11 @@ def process_get_request(reqtype, platform, cont, inp):
   cmds = scenarios[reqtype][platform][cont]
   if reqtype == 'server':
     port = scenarios[reqtype][platform]['port']
-    return get_response_server(cmds,inp,port)
+    result = get_response_server(cmds,inp,port)
   else:
     # type is cli
     result = get_response_cli(cmds,inp)
-    return(result,200)
+  return(result,200)
 
 
 def get_response_server(cmds, inp, port):
@@ -45,7 +45,7 @@ def get_response_server(cmds, inp, port):
   for i in range(100):
     try:
       r = requests.get(url)
-      return r
+      return r.text
     except Exception as e:
       nothing = e
     time.sleep(0.05)
