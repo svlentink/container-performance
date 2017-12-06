@@ -1,5 +1,5 @@
 
-container_technologies = ['docker','rkt','lxc','openvz']
+container_technologies = ['docker','rkt','lxc']
 
 # These scenarios define what commands will be run
 # you can have a cli based application,
@@ -31,7 +31,7 @@ scenarios = {
     'lamp': {
       'port' : 8888, # this means that is is a running server
       'docker':{
-        'init' : 'docker run -dp 8888:80 --name server-lamp server-lamp',
+        'init' : 'docker start server-lamp',
         'kill' : 'docker stop server-lamp'
       },
       'rkt':{
