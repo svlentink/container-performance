@@ -31,7 +31,7 @@ def process_get_requesti(reqtype, platform, cont, inp):
   else:
     # type is cli
     result = get_response_cli(cmds,inp)
-  return(str(result),200)
+  return(result,200)
 
 
 def get_response_server(cmds, inp, port):
