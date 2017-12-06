@@ -39,6 +39,7 @@ def get_response_server(cmds, inp, port):
   delayed_kill(killcmd)
   if killcmd not in kill_container_at:
     subprocess.call(cmds['init'], shell=True)
+    print('Just performed:',cmds['init'])
   url = 'http://localhost:' + str(port) + '?param=' + str(inp)
   for i in range(100):
     try:
@@ -78,7 +79,7 @@ kill_container_at = {}
 def kill_idle_containers(kill_container_at):
   while True:
     time.sleep(0.5)
-    todoremove[]
+    todoremove = []
     for killcmd in kill_container_at:
       if kill_container_at[killcmd] < int(time.time()):
         subprocess.call(killcmd, shell=True)
