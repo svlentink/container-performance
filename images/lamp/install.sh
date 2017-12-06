@@ -42,5 +42,6 @@ chmod +x /entrypoint
 
 # the following is provided in the lxc alpine image
 if [ -n "$(which rc-update)" ]; then
+  rc-update add php-fpm
   rc-update add nginx
 fi
