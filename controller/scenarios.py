@@ -39,7 +39,7 @@ scenarios = {
       },
       'lxc':{
         'init' : 'lxc-start -n server-lamp',
-        'kill' : 'lxc-stop -n server-lamp'
+        'kill' : 'lxc-stop -t 1 -n server-lamp'
       }
     }
   }
