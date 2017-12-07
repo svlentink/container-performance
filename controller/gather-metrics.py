@@ -55,12 +55,33 @@ def gather_metrics(conttype):
       with open(filename, 'w') as f:
         json.dump(results,f,default=str)
 
+  return results
 
+def metrics2r(results, conttype):
+  files2write = {}
+  for reqtype in results:
+    for platform results[reqtype]:
+      arr = results[reqtype][platform]
+      fileprefix = conttype + '_' + reqtype + '_' + platform + '_'
+      for i in results:
+        s = results[i]['s'] # status code e.g. 200 or 500
+        d = results[i]['d'] # time delta
+        filename = fileprefix + s + '.csv'
+        if filename in files2write:
+          files2write[filename] = ""
+        files2write[filename] += d + ','
+  
+  for fln in files2write:
+    csvdata = files2write[fln]
+    with open(testdata_output_path + '/' fln, 'a') as f:
+      f.write(csvdata)
+        
 
 conttype = getenv('CONTAINERTYPE')
 if not conttype or not len(conttype):
   print('ERROR please use export CONTAINERTYPE=insert_here')
 else:
-  gather_metrics(conttype)
+  m = gather_metrics(conttype)
+  metrics2r(m,conttype)
 
 print('finished')
