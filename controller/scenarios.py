@@ -29,7 +29,7 @@ scenarios = {
   },
   'server' : {
     'lamp': {
-      'port' : 8888, # this means that is is a running server
+      'port' : 80, # this means that is is a running server
       'docker':{
         'init' : 'docker start --net=host server-lamp',
         'kill' : 'docker stop server-lamp'
