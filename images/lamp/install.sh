@@ -38,9 +38,9 @@ php-fpm7
 EOF
 if grep -q container=lxc /proc/1/environ ; then
   echo 'ip a a 10.0.3.123/24 dev eth0' >> /entrypoint
-  echo '10.0.3.1 memcache-on-host' >> /etc/hosts
+  echo -e '\n10.0.3.1 memcache-on-host' >> /etc/hosts
 else
-  echo '127.0.0.1 memcache-on-host' >> /etc/hosts
+  echo -e '\n127.0.0.1 memcache-on-host' >> /etc/hosts
 fi
 cat << EOF  >> /entrypoint
 mkdir -p /run/nginx
