@@ -23,7 +23,7 @@ mkdir -p /var/www
 cat << 'EOF' > /var/www/index.php
 <?php 
 $mc = new Memcached();
-$mc->addServer("127.0.0.1", 11211);
+$mc->addServer("memcache-on-host", 11211);
 $previous = $mc->get("last");
 $current = $_GET["param"];
 $mc->set("last", $current); 
@@ -38,6 +38,9 @@ php-fpm7
 EOF
 if grep -q container=lxc /proc/1/environ ; then
   echo 'ip a a 10.0.3.123/24 dev eth0' >> /entrypoint
+  echo '10.0.3.1 memcache-on-host' >> /etc/hosts
+else
+  echo '127.0.0.1 memcache-on-host' >> /etc/hosts
 fi
 cat << EOF  >> /entrypoint
 mkdir -p /run/nginx

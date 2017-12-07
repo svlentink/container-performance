@@ -16,7 +16,8 @@ create_docker_img() {
   local reqtype=$1
   local framework=$2
   docker build -t $reqtype-$framework $DIR/$framework/
-  docker run -dp 80:80 --net=host --name $reqtype-$framework $reqtype-$framework
+  [[ $reqtype == "server" ]] && SERVEROPTIONS="-p 80:80 --net=host"
+  docker run -d $SERVEROPTIONS --name $reqtype-$framework $reqtype-$framework
   docker stop $reqtype-$framework
 }
 

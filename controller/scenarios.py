@@ -12,17 +12,17 @@ container_technologies = ['docker','rkt','lxc']
 scenarios = {
   'cli' : {
     'bash' : {
-      'docker' : 'docker run cli-bash',
+      'docker' : 'docker start cli-bash',
       'rkt' : '',
       'lxc' : 'lxc-execute -n cli-bash -- /entrypoint'
     },
     'node' : {
-      'docker' : 'docker run cli-node',
+      'docker' : 'docker start cli-node',
       'rkt' : '',
       'lxc' : 'lxc-execute -n cli-node -- /entrypoint'
     },
     'python' : {
-      'docker' : 'docker run cli-python',
+      'docker' : 'docker start cli-python',
       'rkt' : '',
       'lxc' : 'lxc-execute -n cli-python -- /entrypoint'
     }
