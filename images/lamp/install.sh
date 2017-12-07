@@ -36,10 +36,10 @@ cat << EOF  > /entrypoint
 #!/bin/sh
 php-fpm7
 EOF
-if [ grep -q container=lxc /proc/1/environ ]; then
+if grep -q container=lxc /proc/1/environ ; then
   echo 'ip a a 10.0.3.123/24 dev eth0' >> /entrypoint
 fi
-cat << EOF  > /entrypoint
+cat << EOF  >> /entrypoint
 mkdir -p /run/nginx
 nginx -g "daemon off;"
 EOF
