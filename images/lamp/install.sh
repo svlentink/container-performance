@@ -36,12 +36,14 @@ EOF
 cat << EOF  > /entrypoint
 #!/bin/sh
 php-fpm7
+mkdir -p /run/nginx
 nginx -g "daemon off;"
 EOF
 chmod +x /entrypoint
 
 # the following is provided in the lxc alpine image
 if [ -n "$(which rc-update)" ]; then
-  rc-update add php-fpm
-  rc-update add nginx
+#  rc-update add php-fpm7
+#  rc-update add nginx
+  ln -fs /entrypoint /sbin/init #the lxc way
 fi
