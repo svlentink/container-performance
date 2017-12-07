@@ -63,13 +63,13 @@ def metrics2r(results, conttype):
     for platform in results[reqtype]:
       arr = results[reqtype][platform]
       fileprefix = conttype + '_' + reqtype + '_' + platform + '_'
-      for i in results:
+      for i in arr:
         s = i['s'] # status code e.g. 200 or 500
         d = i['d'] # time delta
-        filename = fileprefix + s + '.csv'
+        filename = fileprefix + str(s) + '.csv'
         if filename in files2write:
           files2write[filename] = ""
-        files2write[filename] += d + ','
+        files2write[filename] += str(d) + ','
   
   for fln in files2write:
     csvdata = files2write[fln]
