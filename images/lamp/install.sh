@@ -18,7 +18,6 @@ server {
 }
 EOF
 
-mkdir -p /run/nginx
 mkdir -p /var/www
 
 cat << 'EOF' > /var/www/index.php
@@ -36,9 +35,11 @@ EOF
 cat << EOF  > /entrypoint
 #!/bin/sh
 php-fpm7
+EOF
 if [ grep -q container=lxc /proc/1/environ ]; then
-  ip a a 10.0.3.123/24 dev eth0
+  echo 'ip a a 10.0.3.123/24 dev eth0' >> /entrypoint
 fi
+cat << EOF  > /entrypoint
 mkdir -p /run/nginx
 nginx -g "daemon off;"
 EOF
