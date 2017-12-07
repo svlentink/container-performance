@@ -31,13 +31,6 @@ create_lxc_img() {
   # to enable lxc-execute, we need lxc installed in the container
   [[ $reqtype == "cli" ]] && lxc-attach -n $reqtype"-"$framework -- apk add --no-cache lxc
 
-  # the next step is a very dirty trick!
-  # for docker we use the network of the host
-  # but since we had no time to look into LXC networking,
-  # we use the following. It works, but it is very ugly
-  # and only allows for one container to work.
-  [[ $reqtype == "server" ]] && echo `lxc-info -n server-lamp | grep IP | awk '{print $2}'`" server-container" >> /etc/hosts
-
   lxc-attach --name $reqtype"-"$framework -- /install.sh
   lxc-stop --name $reqtype"-"$framework
 #  echo "lxc.init_cmd = /entrypoint" >> /var/lib/lxc/$reqtype"-"$framework/config

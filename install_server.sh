@@ -85,6 +85,7 @@ echo Installing LXC
 apt install -y lxc lxd
 #ln -s ~/container-performance/custom-lxc-start.sh /usr/local/bin/custom-lxc-start
 sed -i 's/127.0.0.1/127.0.0.1,10.0.3.1/g' /etc/memcached.conf # allow to connect from container
+echo '10.0.3.123 server-container' >> /etc/hosts
 }
 
 install_openvz() {
