@@ -67,7 +67,7 @@ def metrics2r(results, conttype):
         s = i['s'] # status code e.g. 200 or 500
         d = i['d'] # time delta
         filename = fileprefix + str(s) + '.csv'
-        if filename in files2write:
+        if filename not in files2write:
           files2write[filename] = ""
         files2write[filename] += str(d) + ','
   
