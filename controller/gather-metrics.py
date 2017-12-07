@@ -60,7 +60,7 @@ def gather_metrics(conttype):
 def metrics2r(results, conttype):
   files2write = {}
   for reqtype in results:
-    for platform results[reqtype]:
+    for platform in results[reqtype]:
       arr = results[reqtype][platform]
       fileprefix = conttype + '_' + reqtype + '_' + platform + '_'
       for i in results:
@@ -73,7 +73,7 @@ def metrics2r(results, conttype):
   
   for fln in files2write:
     csvdata = files2write[fln]
-    with open(testdata_output_path + '/' fln, 'a') as f:
+    with open(testdata_output_path + '/' + fln, 'a') as f:
       f.write(csvdata)
         
 
