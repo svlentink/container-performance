@@ -12,17 +12,17 @@ container_technologies = ['docker','rkt','lxc']
 scenarios = {
   'cli' : {
     'bash' : {
-      'docker' : 'docker start cli-bash',
+      'docker' : 'docker run cli-bash',
       'rkt' : '',
       'lxc' : 'lxc-execute -n cli-bash -- /entrypoint'
     },
     'node' : {
-      'docker' : 'docker start cli-node',
+      'docker' : 'docker run cli-node',
       'rkt' : '',
       'lxc' : 'lxc-execute -n cli-node -- /entrypoint'
     },
     'python' : {
-      'docker' : 'docker start cli-python',
+      'docker' : 'docker run cli-python',
       'rkt' : '',
       'lxc' : 'lxc-execute -n cli-python -- /entrypoint'
     }
@@ -31,7 +31,7 @@ scenarios = {
     'lamp': {
       'port' : 80, # this means that is is a running server
       'docker':{
-        'init' : 'docker start --net=host server-lamp',
+        'init' : 'docker start server-lamp',
         'kill' : 'docker stop server-lamp'
       },
       'rkt':{

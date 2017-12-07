@@ -40,6 +40,8 @@ apt install -y \
   git
 easy_install pip
 
+echo -e '127.0.0.1 memcache-on-host' >> /etc/hosts
+
 cd ~
 if [ ! -d container-performance ]; then
   echo fetching the custom controller
