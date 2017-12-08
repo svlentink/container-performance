@@ -9,7 +9,7 @@ import threading
 app = Flask(__name__)
 from scenarios import *
 
-kill_container_after = 8 #sec
+kill_container_after = 5 #sec
 
 # e.g. /GET/cli/python/docker/1337
 @app.route('/GET/<reqtype>/<platform>/<cont>/<int:inp>', methods=['GET'])
