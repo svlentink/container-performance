@@ -13,7 +13,7 @@ print('This script is the heart of the research, it gathers the numbers.')
 amount_of_tests_per_case = 100
 sleep_interval_between_tests = {
   "cli" : 2, #sec
-  'server' : 20 #sec
+  'server' : 25 #sec
 }
 testdata_output_path = '/root'
 
