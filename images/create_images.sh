@@ -43,12 +43,12 @@ create_rkt_img() {
   # https://coreos.com/rkt/docs/latest/getting-started-guide.html#create-the-image
   acbuild begin docker://alpine
   #acbuild dependency add quay.io/coreos/alpine-sh # image too old
-  acbuild set-name $reqtime"-"$framework
+  acbuild set-name $reqtype"-"$framework
   acbuild copy $DIR/$framework/install.sh /install.sh
   acbuild run -- /install.sh
   acbuild set-exec /entrypoint
   [[ $reqtype == "server" ]] && acbuild port add 80
-  acbuild write $reqtime"-"$framework.aci
+  acbuild write $reqtype"-"$framework.aci
   acbuild end
 }
 
