@@ -1,6 +1,4 @@
 
-container_technologies = ['docker','rkt','lxc']
-
 # These scenarios define what commands will be run
 # you can have a cli based application,
 # will is just a string which we run, the input (a number)

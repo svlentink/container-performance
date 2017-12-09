@@ -15,15 +15,15 @@ kill_container_after = 5 #sec
 @app.route('/GET/<reqtype>/<platform>/<cont>/<int:inp>', methods=['GET'])
 def process_get_request(reqtype, platform, cont, inp):
   print(request) # debug
-  if cont not in container_technologies:
-    print('Unknown container technology, please use one of', container_technologies)
-    return('Unknown container technology',500)
   if reqtype not in scenarios:
     print('Unknown request type, pleas use one of', scenarios)
     return('Unknown reqtype',500)
   if platform not in scenarios[reqtype]:
     print('Unknown platfrom type, please use one of', scenarios[platform])
     return('Unknown platform',500)
+  if cont not in scenarios[reqtype][platform]:
+    print('Unknown container technology, please use one of', scenarios[reqtype][platform])
+    return('Unknown container technology',500)
   
   cmds = scenarios[reqtype][platform][cont]
   if reqtype == 'server':
