@@ -35,9 +35,10 @@ scenarios = {
         'init' : 'docker start server-lamp',
         'kill' : 'docker stop server-lamp'
       },
-      'rkt':{
-        'init': 'rkt --insecure-options=image run cli-lamp.aci'
-      },
+#      'rkt':{
+#        'init': 'rkt --insecure-options=image run --port 80:80 cli-lamp.aci',
+#        'kill': 'rkt stop TODO insert way to find UUID'
+#      },
       'lxc':{
         'init' : 'lxc-start -n server-lamp',
         'kill' : 'lxc-stop -t 1 -n server-lamp'
