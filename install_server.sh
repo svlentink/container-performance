@@ -71,6 +71,7 @@ wget https://github.com/rkt/rkt/releases/download/v1.29.0/rkt_1.29.0-1_amd64.deb
 wget https://github.com/rkt/rkt/releases/download/v1.29.0/rkt_1.29.0-1_amd64.deb.asc
 gpg --verify rkt_1.29.0-1_amd64.deb.asc
 sudo dpkg -i rkt_1.29.0-1_amd64.deb
+apt install systemd-container
 
 GITHUB_REPO='containers/build'
 LATEST_RELEASE_TAG=$(curl -Is https://github.com/${GITHUB_REPO}/releases/latest \
