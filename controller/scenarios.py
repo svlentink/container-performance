@@ -13,16 +13,19 @@ scenarios = {
   'cli' : {
     'bash' : {
       'docker' : 'docker run cli-bash',
+      'docker--rm' : 'docker run --rm cli-bash',
       'rkt' : '',
       'lxc' : 'lxc-execute -n cli-bash -- /entrypoint'
     },
     'node' : {
       'docker' : 'docker run cli-node',
+      'docker--rm' : 'docker run --rm cli-node',
       'rkt' : '',
       'lxc' : 'lxc-execute -n cli-node -- /entrypoint'
     },
     'python' : {
       'docker' : 'docker run cli-python',
+      'docker--rm' : 'docker run --rm cli-python',
       'rkt' : '',
       'lxc' : 'lxc-execute -n cli-python -- /entrypoint'
     }

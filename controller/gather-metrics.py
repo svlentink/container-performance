@@ -10,7 +10,7 @@ import time
 
 
 print('This script is the heart of the research, it gathers the numbers.')
-amount_of_tests_per_case = 100
+amount_of_tests_per_case = 1000
 sleep_interval_between_tests = {
   "cli" : 2, #sec
   'server' : 25 #sec
@@ -25,6 +25,7 @@ def measure_millis(url):
   r = requests.get(url)
   stopt = int(time.time() * 1000)
   delta = stopt - startt
+  print(r.text) # enables us to see what the output is
   return { 'd' : delta, 's' : r.status_code }
 
 
@@ -34,6 +35,8 @@ def gather_metrics(conttype):
   for reqtype in scenarios:
     results[reqtype] = {}
     for platform in scenarios[reqtype]:
+      if conttype not in scenarios[reqtype][platform]:
+        break
       nr = randrange(100)
       url = 'http://main-controller:8081/GET/' + reqtype + '/' + platform + '/' + conttype + '/' + str(nr)
       
