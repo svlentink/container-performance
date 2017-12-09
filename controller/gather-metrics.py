@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import requests
+import subprocess
 from os import getenv
 from scenarios import *
 from random import randrange
@@ -52,6 +53,8 @@ def gather_metrics(conttype):
         time.sleep(sleep_interval_between_tests[reqtype])
         metric = measure_millis(url + str(i))
         arr.append(metric)
+        rktcleanup = 'which rkt && rkt gc --grace-period=1m' # easy dirty solution
+        subprocess.call(rktcleanup, shell=True)
       
       print('Saving preliminary result to disk', reqtype, platform)
       results[reqtype][platform] = arr
