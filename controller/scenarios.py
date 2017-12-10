@@ -36,7 +36,8 @@ scenarios = {
         'kill' : 'docker stop server-lamp'
       },
       'rkt':{
-        'init': 'rkt --insecure-options=image run --net=host ~/server-lamp.aci',
+        # https://github.com/rkt/rkt/blob/master/Documentation/using-rkt-with-systemd.md
+        'init': 'systemd-run rkt --insecure-options=image run --net=host ~/server-lamp.aci',
         'kill': "rkt stop `rkt list|grep running|awk '{print $1}'`"
       },
       'lxc':{
