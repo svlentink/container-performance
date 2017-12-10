@@ -17,6 +17,8 @@ to facilite multiple HTTP requests, which serve a single web page request.
 
 ## Installation
 
+We used Ubuntu Xenial VPS with 4GB of ram.
+
 Use `docker`,`rkt` or `lxc` as CONTAINERTYPE.
 ```shell
 sudo su
@@ -36,3 +38,9 @@ export CONTAINERTYPE=insert_here
 But you should first manually check if memcached is working (`netstat -tulpn`)
 and perform all the request manually for its output
 `curl main-controller:8081/GET/<server,cli>/<lamp,bash,node,python>/<lxc,docker>/123`
+
+## Rkt
+
+We only used the default `rkt` way,
+future research could include `rkt fly`,
+which still is in [development](https://coreos.com/rkt/docs/latest/subcommands/fly.html).
