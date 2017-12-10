@@ -12,19 +12,19 @@ scenarios = {
     'bash' : {
       'docker' : 'docker run cli-bash',
       'docker--rm' : 'docker run --rm cli-bash',
-      'rkt' : 'rkt --insecure-options=image run cli-bash.aci --',
+      'rkt' : 'rkt --insecure-options=image run ~/cli-bash.aci --',
       'lxc' : 'lxc-execute -n cli-bash -- /entrypoint'
     },
     'node' : {
       'docker' : 'docker run cli-node',
       'docker--rm' : 'docker run --rm cli-node',
-      'rkt' : 'rkt --insecure-options=image run cli-node.aci --',
+      'rkt' : 'rkt --insecure-options=image run ~/cli-node.aci --',
       'lxc' : 'lxc-execute -n cli-node -- /entrypoint'
     },
     'python' : {
       'docker' : 'docker run cli-python',
       'docker--rm' : 'docker run --rm cli-python',
-      'rkt' : 'rkt --insecure-options=image run cli-python.aci --',
+      'rkt' : 'rkt --insecure-options=image run ~/cli-python.aci --',
       'lxc' : 'lxc-execute -n cli-python -- /entrypoint'
     }
   },
@@ -36,7 +36,7 @@ scenarios = {
         'kill' : 'docker stop server-lamp'
       },
 #      'rkt':{
-#        'init': 'rkt --insecure-options=image run --port 80:80 cli-lamp.aci',
+#        'init': 'rkt --insecure-options=image run --port 80:80 ~/cli-lamp.aci',
 #        'kill': 'rkt stop TODO insert way to find UUID'
 #      },
       'lxc':{
