@@ -80,6 +80,8 @@ wget -O /tmp/toinstall.tgz \
   https://github.com/${GITHUB_REPO}/releases/download/v$LATEST_RELEASE_TAG/acbuild-v$LATEST_RELEASE_TAG.tar.gz
 tar xvfz /tmp/toinstall.tgz --directory /root/
 ln -s  /root/acbuild-v*/* /usr/local/bin/ # make all the acbuild tools available to PATH
+
+echo '127.0.0.1 server-container' >> /etc/hosts
 }
 
 install_lxc() {

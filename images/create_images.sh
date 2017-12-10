@@ -47,7 +47,7 @@ create_rkt_img() {
   acbuild copy $DIR/$framework/install.sh /install.sh
   acbuild run -- /install.sh
   acbuild set-exec /entrypoint
-  [[ $reqtype == "server" ]] && acbuild port add 80
+  [[ $reqtype == "server" ]] && acbuild port add nginx tcp 80
   acbuild write ~/$reqtype"-"$framework.aci
   acbuild end
 }
