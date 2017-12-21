@@ -1,0 +1,8 @@
+version: '2'
+services:
+  r:
+    image: r-base
+    volumes:
+      - $PWD:/storage
+    entrypoint: ["Rscript"]
+    command: ['/storage/script.r']

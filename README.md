@@ -30,6 +30,7 @@ curl -sSL https://raw.githubusercontent.com/svlentink/container-performance/mast
 And after the reboot you can run:
 ```shell
 sudo su
+systemctl start memcached
 export CONTAINERTYPE=insert_here
 /root/container-performance/controller/main.py & \
   sleep 3 && /root/container-performance/controller/gather-metrics.py
